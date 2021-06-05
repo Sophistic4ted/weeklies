@@ -1,3 +1,3 @@
 window.onload = function() {
-        $(".main").html("inject.html");
+        $(".main").load("inject.html");
 }
