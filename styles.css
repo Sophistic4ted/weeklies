@@ -7,8 +7,9 @@
 #clockBackground {
 	position: relative;
 	background: url(clock1.jpg) no-repeat;
-	height: auto;
+	height: 0;
 	width: 50vw;
+	padding-top: 70%;
 	background-size: 100%;
 }
 
