@@ -2,9 +2,11 @@ window.onload = function() {
         var time = new Date();
         var hours = time.getHours();
         var minutes = time.getMinutes();
-        console.log(typeof(hours));
+        console.log(hours);
         console.log(minutes);
-        $(".main").load("inject.html");
+        if (hours = 24 and minutes < 10) {                
+                $(".main").load("inject.html");
+        }
 }
 
 
