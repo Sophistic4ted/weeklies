@@ -8,19 +8,19 @@
 	position: relative;
 	background: url(clock1.jpg) no-repeat;
 	height: 0;
-	width: 50vw;
+	width: 30vw;
 	padding-top: 75%;
 	background-size: 100%;
 }
 
 #clockContainer {
 	position: absolute;
-	top: 10px;
-	right: 125px;
+	top: 5px;
+	right: 75px;
 	margin: auto;
-	height: 15vw;
+	height: 20vw;
 	/*to make the height and width responsive*/
-	width: 15vw;
+	width: 20vw;
 	/*setting our background image*/
 }
 
