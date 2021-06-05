@@ -24,7 +24,7 @@ setInterval(() => {
     second.style.transform = `rotate(${sec_rotation}deg)`;
 }, 1000);
 
-var $menu = $('#clockBackground'),
+var $menu = $('#clockBackground'),    
     w = $(window).width(), //window width
     h = $(window).height(); //window height
 
@@ -47,4 +47,12 @@ $(window).on('mousemove', function(e) {
 
   //poster transform
   $menu.css('transform', transformPoster);
+        
+    $menu.each(function() {
+    var $this = $(this),
+        offsetLayer = $this.data('offset') || 0,
+        transformLayer = 'translate3d(' + offsetX * offsetLayer + 'px, ' + offsetY * offsetLayer + 'px, 20px)';
+
+    $this.css('transform', transformLayer);
+  });
 });
