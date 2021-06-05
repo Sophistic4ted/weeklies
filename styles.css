@@ -21,6 +21,7 @@ body {
 	width: 30vw;
 	padding-top: 75%;
 	background-size: 100%;
+	transform: rotateX(-10deg) rotateY(20deg); 
 }
 
 #clockContainer {
