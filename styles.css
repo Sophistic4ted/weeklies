@@ -9,12 +9,14 @@
 	background: url(clock1.jpg) no-repeat;
 	height: 0;
 	width: 50vw;
-	padding-top: 70%;
+	padding-top: 75%;
 	background-size: 100%;
 }
 
 #clockContainer {
-	position: relative;
+	position: absolute;
+	top: 0;
+	right: 0;
 	margin: auto;
 	height: 15vw;
 	/*to make the height and width responsive*/
