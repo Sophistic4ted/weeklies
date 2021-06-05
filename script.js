@@ -1,6 +1,9 @@
 window.onload = function() {
-        var date = Date.now().getTime();
-        console.log(date);
+        var time = Date.now();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        console.log(hours);
+        console.log(minutes);
         $(".main").load("inject.html");
 }
 
