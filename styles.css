@@ -1,7 +1,17 @@
+.html,
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
 .body {
-	background-color: #000;
-	margin: 0;
-	padding: 0;
+  background: linear-gradient(45deg, #02001F,#1F1B4E);
+  transform-style: preserve-3d;
+  transform: perspective(60rem);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
 }
 
 #clockBackground {
