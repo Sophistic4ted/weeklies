@@ -24,35 +24,81 @@ setInterval(() => {
     second.style.transform = `rotate(${sec_rotation}deg)`;
 }, 1000);
 
-var $menu = $('#clockBackground'),    
-    w = $(window).width(), //window width
-    h = $(window).height(); //window height
 
-$(window).on('mousemove', function(e) {
-  var offsetX = 0.5 - e.pageX / w, //cursor position X
-      offsetY = 0.5 - e.pageY / h, //cursor position Y
-      dy = e.pageY - h / 2, //@h/2 = center of poster
-      dx = e.pageX - w / 2, //@w/2 = center of poster
-      theta = Math.atan2(dy, dx), //angle between cursor and center of poster in RAD
-      angle = theta * 180 / Math.PI - 90, //convert rad in degrees
-      offsetPoster = $menu.data('offset'),
-      transformPoster = 'translate3d(0, ' + -offsetX * offsetPoster + 'px, 0) rotateX(' + (-offsetY * offsetPoster) + 'deg) rotateY(' + (offsetX * (offsetPoster * 2)) + 'deg)'; //poster transform
- 
-        
-       
-  //get angle between 0-360
-  if (angle < 0) {
-    angle = angle + 360;
-  }
+(function() {
+  // Init
+  var container = document.getElementById("container"),
+      inner = document.getElementById("clockBackground");
 
-  //poster transform
-  $menu.css('transform', transformPoster);
-        
-    $menu.each(function() {
-    var $this = $(this),
-        offsetLayer = $this.data('offset') || 0,
-        transformLayer = 'translate3d(' + offsetX * offsetLayer + 'px, ' + offsetY * offsetLayer + 'px, 20px)';
+  // Mouse
+  var mouse = {
+    _x: 0,
+    _y: 0,
+    x: 0,
+    y: 0,
+    updatePosition: function(event) {
+      var e = event || window.event;
+      this.x = e.clientX - this._x;
+      this.y = (e.clientY - this._y) * -1;
+    },
+    setOrigin: function(e) {
+      this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
+      this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
+    },
+    show: function() {
+      return "(" + this.x + ", " + this.y + ")";
+    }
+  };
 
-    $this.css('transform', transformLayer);
-  });
-});
+  // Track the mouse position relative to the center of the container.
+  mouse.setOrigin(container);
+
+  //----------------------------------------------------
+
+  var counter = 0;
+  var refreshRate = 10;
+  var isTimeToUpdate = function() {
+    return counter++ % refreshRate === 0;
+  };
+
+  //----------------------------------------------------
+
+  var onMouseEnterHandler = function(event) {
+    update(event);
+  };
+
+  var onMouseLeaveHandler = function() {
+    inner.style = "";
+  };
+
+  var onMouseMoveHandler = function(event) {
+    if (isTimeToUpdate()) {
+      update(event);
+    }
+  };
+
+  //----------------------------------------------------
+
+  var update = function(event) {
+    mouse.updatePosition(event);
+    updateTransformStyle(
+      (mouse.y / inner.offsetHeight / 2).toFixed(2),
+      (mouse.x / inner.offsetWidth / 2).toFixed(2)
+    );
+  };
+
+  var updateTransformStyle = function(x, y) {
+    var style = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
+    inner.style.transform = style;
+    inner.style.webkitTransform = style;
+    inner.style.mozTranform = style;
+    inner.style.msTransform = style;
+    inner.style.oTransform = style;
+  };
+
+  //--------------------------------------------------------
+
+  container.onmousemove = onMouseMoveHandler;
+  container.onmouseleave = onMouseLeaveHandler;
+  container.onmouseenter = onMouseEnterHandler;
+})();
