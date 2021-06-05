@@ -37,3 +37,4 @@ $(window).on('mousemove', function(e) {
       angle = theta * 180 / Math.PI - 90, //convert rad in degrees
       offsetPoster = $menu.data('offset'),
       transformPoster = 'translate3d(0, ' + -offsetX * offsetPoster + 'px, 0) rotateX(' + (-offsetY * offsetPoster) + 'deg) rotateY(' + (offsetX * (offsetPoster * 2)) + 'deg)'; //poster transform
+}
