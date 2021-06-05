@@ -2,15 +2,18 @@
 	margin: 0;
 	padding: 0;
 }
+#clockBackground {
+	background: url(clock1.jpg) no-repeat center center cover;
+	background-size: 100%;
+}
+
 #clockContainer {
 	position: relative;
 	margin: auto;
 	height: 15vw;
 	/*to make the height and width responsive*/
 	width: 15vw;
-	background: url(clock1.jpg) no-repeat;
 	/*setting our background image*/
-	background-size: 100%;
 }
 
 #hour,
