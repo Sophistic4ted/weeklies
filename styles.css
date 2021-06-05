@@ -1,9 +1,13 @@
 .body {
+	background-color: #000;
 	margin: 0;
 	padding: 0;
 }
+
 #clockBackground {
 	background: url(clock1.jpg) no-repeat center center cover;
+	height: auto;
+	width: 50vw;
 	background-size: 100%;
 }
 
