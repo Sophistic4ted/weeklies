@@ -4,7 +4,7 @@ window.onload = function() {
         var minutes = time.getMinutes();
         console.log(hours);
         console.log(minutes);
-        if (hours = 24 && minutes < 10) {                
+        if (hours == 0 && minutes < 10) {                
                 $(".main").load("inject.html");
         }
 }
