@@ -1,5 +1,5 @@
 window.onload = function() {
-        var time = Date.now();
+        var time = new Date();
         var hours = time.getHours();
         var minutes = time.getMinutes();
         console.log(hours);
