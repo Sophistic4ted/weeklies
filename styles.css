@@ -4,7 +4,7 @@ body {
 	height: 100vh;
 }
 
-.body {
+body {
   background: linear-gradient(45deg, #02001F,#1F1B4E);
   transform-style: preserve-3d;
   transform: perspective(60rem);
