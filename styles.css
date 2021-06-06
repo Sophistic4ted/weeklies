@@ -1,73 +1,103 @@
 html,
 body {
-	width: 100vw;
-	height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
 body {
-  background: linear-gradient(45deg, #02001F,#1F1B4E);
+  background: #000;
   position: fixed;
   display: flex;
-  align-items: center;
-  justify-content: center; 
+  justify-content: center;
+  padding-bottom: 64px;
 }
 
 #container {
-  perspective: 30px;
+  margin-top: 64px;
+  width: 476px;
+  height: 648px;
+  perspective: 1000px;
+  position: relative;
 }
 
 #clockBackground {
-	position: relative;
-	background: url(clock1.jpg) no-repeat;
-	height: 0;
-	width: 30vw;
-	padding-top: 75%;
-	background-size: 100%;
-	  transition: transform 0.5s;
-  -webkit-transition: transform 0.5s;
-  box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.2);
+  background: url(red.jpg) no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+#green {
+  background: url(green.jpg) no-repeat;
+  background-size: 100%;
+  opacity: .6;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(30px);  
+}
+
+#blue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(blue.jpg) no-repeat;
+  background-size: 100%;
+  opacity: .3;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(60px);
 }
 
 #clockContainer {
-	position: absolute;
-	top: 5px;
-	right: 75px;
-	margin: auto;
-	height: 20vw;
-	/*to make the height and width responsive*/
-	width: 20vw;
-	/*setting our background image*/
+  position: absolute;
+  top: -20px;
+  right: 40px;
+  margin: auto;
+  height: 192px;;
+  width: 192px;
+  transform: translateZ(30px);
+}
+
+h3 {
+  position: absolute;
+  top: 16px;
+  left: 48px;
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+  color: #000;
+  transform: translateZ(90px);
 }
 
 #hour,
 #minute,
 #second {
-	position: absolute;
-	background: black;
-	border-radius: 10px;
-	transform-origin: bottom;
+  position: absolute;
+  background: black;
+  border-radius: 10px;
+  transform-origin: bottom;
 }
 
 #hour {
-	width: 1.8%;
-	height: 25%;
-	top: 25%;
-	left: 48.85%;
-	opacity: 0.8;
+  width: 1.8%;
+  height: 25%;
+  top: 25%;
+  left: 48.85%;
+  opacity: 0.8;
 }
 
 #minute {
-	width: 1.6%;
-	height: 30%;
-	top: 19%;
-	left: 48.9%;
-	opacity: 0.8;
+  width: 1.6%;
+  height: 30%;
+  top: 19%;
+  left: 48.9%;
+  opacity: 0.8;
 }
 
 #second {
-	width: 1%;
-	height: 40%;
-	top: 9%;
-	left: 49.25%;
-	opacity: 0.8;
+  width: 1%;
+  height: 40%;
+  top: 9%;
+  left: 49.25%;
+  opacity: 0.8;
 }
