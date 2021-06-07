@@ -1,3 +1,8 @@
+// this is useless
+window.onload = function() {
+    $(".se-pre-con").fadeOut("slow");
+}
+
 function update(e){
     var x = e.clientX || e.touches[0].clientX
     var y = e.clientY || e.touches[0].clientY
