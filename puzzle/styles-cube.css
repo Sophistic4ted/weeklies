@@ -1,3 +1,25 @@
+form {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0; 
+  right: 0;
+  width: 232px;
+  bottom: 0;
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-bottom: 128px;
+}
+
+input {
+  margin-bottom: 8px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid white;
+}
+
+
 .container {
   width: 100%;
   display: flex;
