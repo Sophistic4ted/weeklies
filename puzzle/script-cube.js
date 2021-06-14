@@ -25,7 +25,7 @@ async function getHashedPass() {
   return sha256(pass);
 }
 
-async function submitAuthForm(event) {
+async function submitAuthForm() {
   
   var login = await getHashedLogin();
   var pass = await getHashedPass();
@@ -41,12 +41,12 @@ async function submitAuthForm(event) {
   .fail(function () {
     alert("failed.");
   });
-  event.preventDefault();
 }
 
-
-const form = document.getElementById('form');
-form.addEventListener('submit', submitAuthForm);
+$('form').submit(function(e) {
+  e.preventDefault();
+  submitAuthForm();
+});
 
 var scene = document.getElementById("scene");
 var parallaxInstance = new Parallax(scene);
