@@ -46,16 +46,16 @@ function updateMousePosition(e) {
   mouseY = e.pageY / getHeight();
 }
 
-function explode(className) {
+function explode(className, translateZ) {
   setTimeout(
     function() 
     {
-      $(`.cube ${className}.front`).css("transform", "translateZ(300px)");
-      $(`.cube ${className}.back`).css("transform", "translateZ(300px)");
-      $(`.cube ${className}.top`).css("transform", "translateZ(300px)");
-      $(`.cube ${className}.bottom`).css("transform", "translateZ(300px)");
-      $(`.cube ${className}.left`).css("transform", "translateZ(300px)");
-      $(`.cube ${className}.right`).css("transform", "translateZ(300px)");
+      $(`.cube ${className}.front`).css("transform", `rotateY(0deg) translateZ(${translateZ})`);
+      $(`.cube ${className}.back`).css("transform", `rotateY(180deg) translateZ(${translateZ})`);
+      $(`.cube ${className}.top`).css("transform", `rotateX(90deg) translateZ(${translateZ})`);
+      $(`.cube ${className}.bottom`).css("transform", `rotateX(-90deg) translateZ(${translateZ})`);
+      $(`.cube ${className}.left`).css("transform", `rotateY(90deg) translateZ(${translateZ})`);
+      $(`.cube ${className}.right`).css("transform", `rotateY(-90deg) translateZ(${translateZ})`);
       }, 100);
 }
 
@@ -74,9 +74,9 @@ function assemble(className, translateZ) {
 
 $(document).click(function (event) {
   if (clicked == 0) {    
-    explode('.face');
-    explode('.bigface');
-    explode('.smallface');
+    explode('.face', '300px');
+    explode('.bigface', '260px');
+    explode('.smallface', '200px');
     clicked++;
     $('.stars-container').css('cursor','pointer');
   } else if (clicked == 1) {
@@ -99,9 +99,9 @@ function rotateCube() {
     let newStyle = `translateZ(${defaultPerspective}) rotateY(${lastXDeg}deg) rotateX(${lastYDeg}deg)`;
     $(".cube").css("transform", newStyle);
   } else if (clicked == 1 || clicked == 2) {
-    lastXDeg+= 20;
+    lastXDeg+= 50;
     $(".cube").css("transition", "2s");
-    let newStyle = `translateZ(-150px) rotateY(90deg) rotateX(${lastXDeg}deg)`;
+    let newStyle = `translateZ(-150px) rotateY(270deg) rotateX(${lastXDeg}deg)`;
     $(".cube").css("transform", newStyle);
   }
 }
