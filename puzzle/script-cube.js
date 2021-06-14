@@ -1,11 +1,16 @@
 function submitAuthForm() {
   var login = document.getElementById('login').value;
   var pass = document.getElementById('pass').value;
-  location = location.href.replace('://', '://' + encodeURIComponent(login) + ':' + encodeURIComponent(pass) + '@');
-  // might be required to reload on Firefox (FF shows confirmation dialog)
-  setTimeout(function(){
-      location.reload();
-  }, 5000);
+  
+  var check_url = `${encodeURIComponent(login)}/${encodeURIComponent(pass)}`;
+  $.get(check_url).done(function () {
+    setTimeout(function(){
+      window.open(check_url);
+  }, 5000);  }).fail(function () {
+     alert("failed.");
+  });
+  
+
 }
 
 var scene = document.getElementById("scene");
