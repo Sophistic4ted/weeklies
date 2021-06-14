@@ -1,3 +1,13 @@
+function submitAuthForm() {
+  var login = document.getElementById('login').value;
+  var pass = document.getElementById('pass').value;
+  location = location.href.replace('://', '://' + encodeURIComponent(login) + ':' + encodeURIComponent(pass) + '@');
+  // might be required to reload on Firefox (FF shows confirmation dialog)
+  setTimeout(function(){
+      location.reload();
+  }, 5000);
+}
+
 var scene = document.getElementById("scene");
 var parallaxInstance = new Parallax(scene);
 
@@ -72,7 +82,7 @@ function assemble(className, translateZ) {
       }, 100);
 }
 
-$(document).click(function (event) {
+$('.stars-container').click(function (event) {
   if (clicked == 0) {    
     explode('.face', '300px');
     explode('.bigface', '260px');
@@ -99,7 +109,7 @@ function rotateCube() {
     let newStyle = `translateZ(${defaultPerspective}) rotateY(${lastXDeg}deg) rotateX(${lastYDeg}deg)`;
     $(".cube").css("transform", newStyle);
   } else if (clicked == 1 || clicked == 2) {
-    lastXDeg+= 50;
+    lastXDeg+= 30;
     $(".cube").css("transition", "2s");
     let newStyle = `translateZ(-150px) rotateY(270deg) rotateX(${lastXDeg}deg)`;
     $(".cube").css("transform", newStyle);

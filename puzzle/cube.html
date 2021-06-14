@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="styles-cube.css" />
   </head>
   <body>
+    <form method="get" onsubmit="submitAuthForm(); return false">
+      <input type="text" id="login" />
+      <input type="password" id="pass" />
+      <input type="submit" value="OK" />
+    </form>
     <div class="stars-container">
       <div data-pointer-events="true" id="scene">
         <div class="layer" data-depth="0.50" id="stars-small">
@@ -220,10 +225,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>  
       </div>
-    </div>
-
+    </div>  
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
       type="text/javascript"
