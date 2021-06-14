@@ -1,3 +1,17 @@
+$(document).ready(function() {
+  $('.center').delay(500).fadeIn(500);
+  $('.smallface').delay(1000).fadeIn(500);
+  $('.bigface').delay(2000).fadeIn(500);
+  $('.front').delay(3000).fadeIn(100);
+  $('.top').delay(3100).fadeIn(100);
+  $('.left').delay(3200).fadeIn(100);
+  $('.right').delay(3300).fadeIn(100);
+  $('.bottom').delay(3400).fadeIn(100);
+  $('.back').delay(3500).fadeIn(100);
+
+});
+
+
 // Global variable
 const defaultPerspective = '-150px';
 // const pageX = window.screen.width;
@@ -8,7 +22,7 @@ let mouseY = 0;
 let lastXDeg = 180;
 let lastYDeg = 180;
 // The speed of the cube following movement
-const speed = 0.08;
+const speed = 0.10;
 
 $(document).ready(()=>{
   drawContent();

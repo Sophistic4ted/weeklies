@@ -68,31 +68,37 @@
     transform: rotateY(0deg) translateZ(148px);
     background-image: url("./Cube/orig1.png");
     background-size: contain;
+    display: none;
   }
   .face.back {
     transform: rotateY(180deg) translateZ(148px);
     background-image: url("./Cube/orig2.png");
     background-size: contain;
+    display: none;
   }
   .face.top {
     transform: rotateX(90deg) translateZ(148px);
     background-image: url("./Cube/orig3.png");
     background-size: contain;
+    display: none;
   }
   .face.bottom {
     transform: rotateX(-90deg) translateZ(148px);
     background-image: url("./Cube/orig4.png");
     background-size: contain;
+    display: none;
   }
   .face.left {
     transform: rotateY(90deg) translateZ(148px);
     background-image: url("./Cube/orig5.png");
     background-size: contain;
+    display: none;
   }
   .face.right {
     transform: rotateY(-90deg) translateZ(148px);
     background-image: url("./Cube/orig6.png");
     background-size: contain;
+    display: none;
   }
 
   .smallface {
@@ -105,6 +111,7 @@
     position: absolute;
     overflow: hidden;
     opacity: 60%;
+    display: none;
   }
 
   .smallface.front {
@@ -144,6 +151,7 @@
     position: absolute;
     overflow: hidden;
     opacity: 30%;
+    display: none;
   }
 
   .bigface.front {
@@ -186,31 +194,32 @@
     align-items: center;
     position: absolute;
     overflow: hidden;
+    display: none;
   }
   
   .center.front {
     transform: rotateY(0deg) translateZ(30px);
-    background-color: #000;
+    background-color: #fff;
   }
   .center.back {
     transform: rotateY(180deg) translateZ(30px);
-    background-color: #000;
+    background-color: #fff;
   }
   .center.top {
     transform: rotateX(90deg) translateZ(30px);
-    background-color: #000;
+    background-color: #fff;
   }
   .center.bottom {
     transform: rotateX(-90deg) translateZ(30px);
-    background-color: #000;
+    background-color: #fff;
   }
   .center.left {
     transform: rotateY(90deg) translateZ(30px);
-    background-color: #000;
+    background-color: #fff;
   }
   .center.right {
     transform: rotateY(-90deg) translateZ(30px);
-    background-color: #000;
+    background-color: #fff;
   }
   body, html {
     margin: 0;
