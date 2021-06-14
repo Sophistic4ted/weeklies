@@ -1,0 +1,217 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+  }
+
+  .glow {
+    position: absolute;
+    top: calc(50% - 266px);
+    left: calc(50% - 242px);
+    width: 484px;
+    height: 484px;
+    border-radius: 50%;
+    box-shadow:
+      inset 0 0 50px rgb(0, 0, 0),
+      inset 20px 0 80px rgb(0, 0, 0),
+      inset -20px 0 80px rgb(0, 0, 0),
+      inset 20px 0 300px rgb(0, 0, 0),
+      0 0 50px #fff,
+      -10px 0 80px rgb(0, 0, 0),
+      10px 0 80px rgb(255, 255, 255);
+  }
+
+  .container .cube-container {
+    width: 300px;
+    height: 300px;
+    -webkit-perspective: 1600px;
+    -webkit-perspective-origin: 50% -240px;
+    perspective-origin: 50% -240px;
+    perspective: 1600px;  
+}
+
+  .cube, .smallcube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transform: translateZ(-150px) rotateX(45deg) rotateY(45deg);
+  }
+  
+  @keyframes rotateCube {
+    0% {
+      transform: translateZ(-150px) rotateX(-45deg) rotateY(45deg);
+    }
+    100% {
+      transform: translateZ(-150px) rotateX(135deg) rotateY(-135deg);
+    }
+  }
+  .face {
+    position: absolute;
+    height: 296px;
+    width: 296px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+    opacity: 100%;
+  }
+
+  .face.front {
+    transform: rotateY(0deg) translateZ(148px);
+    background-image: url("./Cube/orig1.png");
+    background-size: contain;
+  }
+  .face.back {
+    transform: rotateY(180deg) translateZ(148px);
+    background-image: url("./Cube/orig2.png");
+    background-size: contain;
+  }
+  .face.top {
+    transform: rotateX(90deg) translateZ(148px);
+    background-image: url("./Cube/orig3.png");
+    background-size: contain;
+  }
+  .face.bottom {
+    transform: rotateX(-90deg) translateZ(148px);
+    background-image: url("./Cube/orig4.png");
+    background-size: contain;
+  }
+  .face.left {
+    transform: rotateY(90deg) translateZ(148px);
+    background-image: url("./Cube/orig5.png");
+    background-size: contain;
+  }
+  .face.right {
+    transform: rotateY(-90deg) translateZ(148px);
+    background-image: url("./Cube/orig6.png");
+    background-size: contain;
+  }
+
+  .smallface {
+    position: absolute;
+    height: 160px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+    opacity: 60%;
+  }
+
+  .smallface.front {
+    transform: rotateY(0deg) translateZ(80px);
+    background-image: url("./InnerCube/side1.png");
+    background-size: contain;
+  }
+  .smallface.back {
+    transform: rotateY(180deg) translateZ(80px);
+    background-image: url("./InnerCube/side1.png");
+    background-size: contain;
+  }
+  .smallface.top {
+    transform: rotateX(90deg) translateZ(80px);
+    background-image: url("./InnerCube/side1.png");
+    background-size: contain;  }
+  .smallface.bottom {
+    transform: rotateX(-90deg) translateZ(80px);
+    background-image: url("./InnerCube/side1.png");
+    background-size: contain;  }
+  .smallface.left {
+    transform: rotateY(90deg) translateZ(80px);
+    background-image: url("./InnerCube/side1.png");
+    background-size: contain;  }
+  .smallface.right {
+    transform: rotateY(-90deg) translateZ(80px);
+    background-image: url("./InnerCube/side1.png");
+    background-size: contain;  }
+ 
+  .bigface {
+    position: absolute;
+    height: 260px;
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+    opacity: 30%;
+  }
+
+  .bigface.front {
+    transform: rotateY(0deg) translateZ(130px);
+    background-image: url("./InnerCube/side2.png");
+    background-size: contain;
+  }
+  .bigface.back {
+    transform: rotateY(180deg) translateZ(130px);
+    background-image: url("./InnerCube/side2.png");
+    background-size: contain;
+  }
+  .bigface.top {
+    transform: rotateX(90deg) translateZ(130px);
+    background-image: url("./InnerCube/side2.png");
+    background-size: contain;
+  }
+  .bigface.bottom {
+    transform: rotateX(-90deg) translateZ(130px);
+    background-image: url("./InnerCube/side2.png");
+    background-size: contain;
+  }
+  .bigface.left {
+    transform: rotateY(90deg) translateZ(130px);
+    background-image: url("./InnerCube/side2.png");
+    background-size: contain;
+  }
+  .bigface.right {
+    transform: rotateY(-90deg) translateZ(130px);
+    background-image: url("./InnerCube/side2.png");
+    background-size: contain;
+  }
+
+  .center {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    overflow: hidden;
+  }
+  
+  .center.front {
+    transform: rotateY(0deg) translateZ(30px);
+    background-color: #000;
+  }
+  .center.back {
+    transform: rotateY(180deg) translateZ(30px);
+    background-color: #000;
+  }
+  .center.top {
+    transform: rotateX(90deg) translateZ(30px);
+    background-color: #000;
+  }
+  .center.bottom {
+    transform: rotateX(-90deg) translateZ(30px);
+    background-color: #000;
+  }
+  .center.left {
+    transform: rotateY(90deg) translateZ(30px);
+    background-color: #000;
+  }
+  .center.right {
+    transform: rotateY(-90deg) translateZ(30px);
+    background-color: #000;
+  }
+  body, html {
+    margin: 0;
+  }
