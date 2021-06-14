@@ -1,8 +1,27 @@
+async function sha256(message) {
+  // encode as UTF-8
+  const msgBuffer = new TextEncoder().encode(message);                    
+
+  // hash the message
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+  // convert ArrayBuffer to Array
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  // convert bytes to hex string                  
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
+}
+
+console.log(sha256("statue"))
+
 function submitAuthForm() {
   var login = document.getElementById('login').value;
   var pass = document.getElementById('pass').value;
   
-  var check_url = `${encodeURIComponent(login)}/${encodeURIComponent(pass)}`;
+  var check_url = `${sha256(login)}/${sha256(pass).html}`;
+
+  window.open(check_url);
   $.get(check_url).done(function () {
     setTimeout(function(){
       window.open(check_url);
