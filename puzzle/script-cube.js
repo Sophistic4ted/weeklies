@@ -1,36 +1,52 @@
-function sha256(message) {
+async function sha256(message) {
   // encode as UTF-8
-  const msgBuffer = new TextEncoder().encode(message);                    
+  const msgBuffer = new TextEncoder().encode(message);
 
   // hash the message
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
 
   // convert ArrayBuffer to Array
   const hashArray = Array.from(new Uint8Array(hashBuffer));
 
-  // convert bytes to hex string                  
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  // convert bytes to hex string
+  const hashHex = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   return hashHex;
 }
 
-console.log(sha256("statue"))
-
-function submitAuthForm() {
-  var login = document.getElementById('login').value;
-  var pass = document.getElementById('pass').value;
-  
-  var check_url = `${sha256(login)}/${sha256(pass).html}`;
-
-  window.open(check_url);
-  $.get(check_url).done(function () {
-    setTimeout(function(){
-      window.open(check_url);
-  }, 5000);  }).fail(function () {
-     alert("failed.");
-  });
-  
-
+async function getHashedLogin() {
+  var login = document.getElementById("login").value;
+  return sha256(login);
 }
+
+async function getHashedPass() {
+  var pass = document.getElementById("pass").value;
+  return sha256(pass);
+}
+
+async function submitAuthForm(event) {
+  
+  var login = await getHashedLogin();
+  var pass = await getHashedPass();
+  console.log(login);
+  var check_url = `${login}/${pass}.html`;
+
+  $.get(check_url)
+  .done(function () {
+    setTimeout(function () {
+      window.open(check_url);
+    }, 5000);
+  })
+  .fail(function () {
+    alert("failed.");
+  });
+  event.preventDefault();
+}
+
+
+const form = document.getElementById('form');
+form.addEventListener('submit', submitAuthForm);
 
 var scene = document.getElementById("scene");
 var parallaxInstance = new Parallax(scene);
@@ -81,48 +97,80 @@ function updateMousePosition(e) {
 }
 
 function explode(className, translateZ) {
-  setTimeout(
-    function() 
-    {
-      $(`.cube ${className}.front`).css("transform", `rotateY(0deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.back`).css("transform", `rotateY(180deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.top`).css("transform", `rotateX(90deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.bottom`).css("transform", `rotateX(-90deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.left`).css("transform", `rotateY(90deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.right`).css("transform", `rotateY(-90deg) translateZ(${translateZ})`);
-      }, 100);
+  setTimeout(function () {
+    $(`.cube ${className}.front`).css(
+      "transform",
+      `rotateY(0deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.back`).css(
+      "transform",
+      `rotateY(180deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.top`).css(
+      "transform",
+      `rotateX(90deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.bottom`).css(
+      "transform",
+      `rotateX(-90deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.left`).css(
+      "transform",
+      `rotateY(90deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.right`).css(
+      "transform",
+      `rotateY(-90deg) translateZ(${translateZ})`
+    );
+  }, 100);
 }
 
 function assemble(className, translateZ) {
-  setTimeout(
-    function() 
-    {
-      $(`.cube ${className}.front`).css("transform", `rotateY(0deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.back`).css("transform", `rotateY(180deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.top`).css("transform", `rotateX(90deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.bottom`).css("transform", `rotateX(-90deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.left`).css("transform", `rotateY(90deg) translateZ(${translateZ})`);
-      $(`.cube ${className}.right`).css("transform", `rotateY(-90deg) translateZ(${translateZ})`);
-      }, 100);
+  setTimeout(function () {
+    $(`.cube ${className}.front`).css(
+      "transform",
+      `rotateY(0deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.back`).css(
+      "transform",
+      `rotateY(180deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.top`).css(
+      "transform",
+      `rotateX(90deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.bottom`).css(
+      "transform",
+      `rotateX(-90deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.left`).css(
+      "transform",
+      `rotateY(90deg) translateZ(${translateZ})`
+    );
+    $(`.cube ${className}.right`).css(
+      "transform",
+      `rotateY(-90deg) translateZ(${translateZ})`
+    );
+  }, 100);
 }
 
-$('.stars-container').click(function (event) {
-  if (clicked == 0) {    
-    explode('.face', '300px');
-    explode('.bigface', '260px');
-    explode('.smallface', '200px');
+$(".stars-container").click(function (event) {
+  if (clicked == 0) {
+    explode(".face", "300px");
+    explode(".bigface", "260px");
+    explode(".smallface", "200px");
     clicked++;
-    $('.stars-container').css('cursor','pointer');
+    $(".stars-container").css("cursor", "pointer");
   } else if (clicked == 1) {
     window.open("auth.html");
     clicked++;
-    $('.stars-container').css('cursor','initial');
+    $(".stars-container").css("cursor", "initial");
   } else if (clicked == 2) {
-    assemble('.face', '148px');
-    assemble('.bigface', '130px');
-    assemble('.smallface', '80px');
+    assemble(".face", "148px");
+    assemble(".bigface", "130px");
+    assemble(".smallface", "80px");
     clicked = 0;
-  } 
+  }
 });
 
 function rotateCube() {
@@ -133,7 +181,7 @@ function rotateCube() {
     let newStyle = `translateZ(${defaultPerspective}) rotateY(${lastXDeg}deg) rotateX(${lastYDeg}deg)`;
     $(".cube").css("transform", newStyle);
   } else if (clicked == 1 || clicked == 2) {
-    lastXDeg+= 30;
+    lastXDeg += 30;
     $(".cube").css("transition", "2s");
     let newStyle = `translateZ(-150px) rotateY(270deg) rotateX(${lastXDeg}deg)`;
     $(".cube").css("transform", newStyle);
