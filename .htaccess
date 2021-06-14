@@ -1,1 +1,3 @@
+RewriteEngine On
+RewriteRule ^$ /store [L]
 ErrorDocument 404 /wrong.html
