@@ -1,3 +1,6 @@
+var scene = document.getElementById('scene');
+var parallaxInstance = new Parallax(scene);
+
 $(document).ready(function() {
   $('.center').delay(500).fadeIn(500);
   $('.smallface').delay(1000).fadeIn(500);
@@ -8,7 +11,6 @@ $(document).ready(function() {
   $('.right').delay(3300).fadeIn(100);
   $('.bottom').delay(3400).fadeIn(100);
   $('.back').delay(3500).fadeIn(100);
-
 });
 
 
