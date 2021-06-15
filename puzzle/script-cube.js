@@ -61,7 +61,7 @@ async function submitAuthForm() {
           $(".stars-container").css("cursor", "initial");
           clicked = false;
           setTimeout(function () {
-            window.open(check_url)
+            window.location = check_url;
           }, 4500);
         }
       });
