@@ -41,7 +41,6 @@ async function getHashedPass() {
 async function submitAuthForm() {
   var login = await getHashedLogin();
   var pass = await getHashedPass();
-  console.log(login);
   var check_url = `${login}/${pass}.html`;
 
   $.get(check_url)
@@ -66,10 +65,15 @@ async function submitAuthForm() {
         }
       });
     })
+    .fail(function () {
+      $("#feedback").fadeIn(function() {
+        $(this).text("That's not the answer!").delay(500).fadeOut();
+      });
+      
+    });
 }
 
-$("form").submit(function (e) {
-  e.preventDefault();
+$("#cb1").click(function() {
   submitAuthForm();
 });
 
