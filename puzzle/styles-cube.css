@@ -228,32 +228,29 @@ input {
   align-items: center;
   position: absolute;
   overflow: hidden;
-  display: none;  
+  display: none;
+  background-color: #fff;
+  transition: background-color 10s cubic-bezier(0.77, 0, 0.175, 1);
+  
 }
 
 .center.front {
   transform: rotateY(0deg) translateZ(30px);
-  background-color: #fff;
 }
 .center.back {
   transform: rotateY(180deg) translateZ(30px);
-  background-color: #fff;
 }
 .center.top {
   transform: rotateX(90deg) translateZ(30px);
-  background-color: #fff;
 }
 .center.bottom {
   transform: rotateX(-90deg) translateZ(30px);
-  background-color: #fff;
 }
 .center.left {
   transform: rotateY(90deg) translateZ(30px);
-  background-color: #fff;
 }
 .center.right {
   transform: rotateY(-90deg) translateZ(30px);
-  background-color: #fff;
 }
 
 html {

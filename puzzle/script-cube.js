@@ -1,3 +1,16 @@
+// Global variable
+let defaultPerspective = "-150px";
+// const pageX = window.screen.width;
+// const pageY = window.screen.height;
+// Track the mouse movemont
+let clicked = false;
+let mouseX = 0;
+let mouseY = 0;
+let lastXDeg = 180;
+let lastYDeg = 180;
+// The speed of the cube following movement
+const speed = 0.1;
+
 async function sha256(message) {
   // encode as UTF-8
   const msgBuffer = new TextEncoder().encode(message);
@@ -26,24 +39,36 @@ async function getHashedPass() {
 }
 
 async function submitAuthForm() {
-  
   var login = await getHashedLogin();
   var pass = await getHashedPass();
   console.log(login);
   var check_url = `${login}/${pass}.html`;
 
   $.get(check_url)
-  .done(function () {
-    setTimeout(function () {
-      window.open(check_url);
-    }, 5000);
-  })
-  .fail(function () {
-    alert("failed.");
-  });
+    .done(function () {
+      explode(".face", "300px");
+      explode(".bigface", "260px");
+      explode(".smallface", "200px");
+
+      clicked = true;
+      $(".stars-container").css("cursor", "pointer");
+
+      $(".stars-container").click(function (event) {
+        if (clicked) {
+          assemble(".face", "148px");
+          assemble(".bigface", "130px");
+          assemble(".smallface", "80px");
+          $(".stars-container").css("cursor", "initial");
+          clicked = false;
+          setTimeout(function () {
+            window.open(check_url)
+          }, 4500);
+        }
+      });
+    })
 }
 
-$('form').submit(function(e) {
+$("form").submit(function (e) {
   e.preventDefault();
   submitAuthForm();
 });
@@ -62,19 +87,6 @@ $(document).ready(function () {
   $(".bottom").delay(3400).fadeIn(100);
   $(".back").delay(3500).fadeIn(100);
 });
-
-// Global variable
-let defaultPerspective = "-150px";
-// const pageX = window.screen.width;
-// const pageY = window.screen.height;
-// Track the mouse movemont
-let clicked = 0;
-let mouseX = 0;
-let mouseY = 0;
-let lastXDeg = 180;
-let lastYDeg = 180;
-// The speed of the cube following movement
-const speed = 0.1;
 
 $(document).ready(() => {
   drawContent();
@@ -154,36 +166,18 @@ function assemble(className, translateZ) {
   }, 100);
 }
 
-$(".stars-container").click(function (event) {
-  if (clicked == 0) {
-    explode(".face", "300px");
-    explode(".bigface", "260px");
-    explode(".smallface", "200px");
-    clicked++;
-    $(".stars-container").css("cursor", "pointer");
-  } else if (clicked == 1) {
-    window.open("auth.html");
-    clicked++;
-    $(".stars-container").css("cursor", "initial");
-  } else if (clicked == 2) {
-    assemble(".face", "148px");
-    assemble(".bigface", "130px");
-    assemble(".smallface", "80px");
-    clicked = 0;
-  }
-});
-
 function rotateCube() {
-  if (clicked == 0) {
+  if (!clicked) {
     $(".cube").css("transition", "none");
     lastXDeg = lastXDeg + (getAngle(mouseX) - lastXDeg) * speed;
     lastYDeg = lastYDeg + (getAngle(mouseY) - lastYDeg) * speed;
     let newStyle = `translateZ(${defaultPerspective}) rotateY(${lastXDeg}deg) rotateX(${lastYDeg}deg)`;
     $(".cube").css("transform", newStyle);
-  } else if (clicked == 1 || clicked == 2) {
-    lastXDeg += 30;
+  } else if (clicked) {
+    lastXDeg += 20;
+    $(".center").css("background", "#008080");
     $(".cube").css("transition", "2s");
-    let newStyle = `translateZ(-150px) rotateY(270deg) rotateX(${lastXDeg}deg)`;
+    let newStyle = `translateZ(-60px) rotateY(135deg) rotateX(${lastXDeg}deg)`;
     $(".cube").css("transform", newStyle);
   }
 }
