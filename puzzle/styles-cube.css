@@ -3,12 +3,12 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  left: 0; 
+  left: 0;
   right: 0;
   width: 232px;
   bottom: 0;
-  margin-left: auto; 
-  margin-right: auto; 
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 96px;
 }
 
@@ -19,11 +19,11 @@ input {
   border: 1px solid white;
 }
 
-input[type=checkbox] {
-  width: 232px;;
+input[type="checkbox"] {
+  width: 232px;
   visibility: hidden;
 }
-input[type=checkbox]:checked {
+input[type="checkbox"]:checked {
   position: relative;
   transform: scale(4.2);
 }
@@ -31,14 +31,14 @@ input[type=checkbox]:checked {
 label {
   outline: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   color: #fff;
   font-family: "Lato", sans-serif;
-  font-size: .8rem;
+  font-size: 0.8rem;
   letter-spacing: 0.04rem;
-  padding: .1rem .1rem;
+  padding: 0.1rem 0.1rem;
   cursor: pointer;
   border: 0.1rem solid #fff;
   background: #000;
@@ -55,12 +55,12 @@ label:active {
 #feedback {
   position: absolute;
   width: 200px;
-  left: 0; 
+  left: 0;
   right: 0;
   bottom: 12px;
   text-align: center;
-  margin-left: auto; 
-  margin-right: auto; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container {
@@ -274,7 +274,9 @@ label:active {
   display: none;
   background-color: #fff;
   transition: background-color 10s cubic-bezier(0.77, 0, 0.175, 1);
-  
+  -webkit-box-shadow: 0px 0px 15px 5px #fff;
+  -moz-box-shadow: 0px 0px 15px 5px #fff;
+  box-shadow: 0px 0px 15px 5px #fff;
 }
 
 .center.front {

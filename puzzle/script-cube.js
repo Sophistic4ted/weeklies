@@ -179,7 +179,7 @@ function rotateCube() {
     $(".cube").css("transform", newStyle);
   } else if (clicked) {
     lastXDeg += 20;
-    $(".center").css("background", "#008080");
+    $(".center").css("background", "#00ffc3");
     $(".cube").css("transition", "2s");
     let newStyle = `translateZ(-60px) rotateY(135deg) rotateX(${lastXDeg}deg)`;
     $(".cube").css("transform", newStyle);
