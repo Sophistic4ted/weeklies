@@ -1,3 +1,5 @@
+window.scrollTo(0, 50000);
+
 var stringRandom = (function () {
   var counter = 0;
 
@@ -26,10 +28,6 @@ var stringRandom = (function () {
 
   function checkLength(x) {
     return Array.from(document.querySelectorAll(x)).length > 0;
-  }
-
-  function addListener(evt, fx) {
-    window.addEventListener(evt, fx);
   }
 
   function changeLetter(letter) {
@@ -126,12 +124,17 @@ var stringRandom = (function () {
     });
   }
 
-  // event listener sullo scroll
-  function updateScrollState() {
-    console.log(counter);
+  function updateScrollState(direction) {
     switch (counter) {
+      case 0:
+        changeToLetters("tabor", "summa");
+        if (direction < 0) {
+          counter = 90;
+        }
+        break;
       case 15:
         changeToLetters("?", "paean");
+
         break;
       case 30:
         changeToLetters("?", "mucho");
@@ -147,10 +150,12 @@ var stringRandom = (function () {
         break;
       case 90:
         changeToLetters("tabor", "summa");
-        counter = 0;
+        if (direction > 0) {
+          counter = 0;
+        }
         break;
     }
-    counter++;
+    counter += direction;
   }
 
   function changeToLetters(changeTo1, changeTo2) {
@@ -173,7 +178,16 @@ var stringRandom = (function () {
 
         changeLetters();
 
-        addListener("scroll", updateScrollState);
+        var lastScrollTop = 0;
+        $(window).scroll(function (event) {
+          var st = $(this).scrollTop();
+          if (st > lastScrollTop) {
+            updateScrollState(1);
+          } else {
+            updateScrollState(-1);
+          }
+          lastScrollTop = st;
+        });
       }
     },
   };
