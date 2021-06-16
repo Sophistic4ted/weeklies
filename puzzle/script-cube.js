@@ -73,6 +73,12 @@ async function submitAuthForm() {
     });
 }
 
+$('#pass').keydown(function (e){
+  if(e.keyCode == 13){
+    submitAuthForm();
+  }
+})
+
 $("#cb1").click(function() {
   submitAuthForm();
 });

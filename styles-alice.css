@@ -21,8 +21,8 @@ body {
   text-align: center;
 }
 
-#portraitImage {
-  height: 800px;
+img { 
+  width: 1000px;
 }
 
 h3 {
