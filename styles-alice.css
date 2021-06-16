@@ -17,6 +17,12 @@ body {
   width: 100%;
 }
 
+#scene {
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+}
+
 body {
   background: #000;
   position: fixed;
