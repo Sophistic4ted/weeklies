@@ -6,7 +6,7 @@ var stringRandom = (function () {
     repeat: 0,
     target1: [],
     target2: [],
-    letters: "O1101001",
+    letters: "*+-/@_$[%£!XO1",
     singleLetters1: [],
     singleLetters2: [],
   };
