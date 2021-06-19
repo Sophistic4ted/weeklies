@@ -62,6 +62,10 @@ div:after{
   -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 }
 
+.description {
+  font-size: 44px;
+}
+
 @keyframes glitchBotom{
   2%,64%{
     transform: translate(-2px,0);
