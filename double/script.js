@@ -204,7 +204,7 @@ function init() {
   });
 
   const gltfLoader = new GLTFLoader();
-  gltfLoader.load("area.glb", (gltf) => {
+  gltfLoader.load("area.gltf", (gltf) => {
     gltf.scene.traverse(function (node) {
       if (node.isMesh) {
         node.castShadow = true;
