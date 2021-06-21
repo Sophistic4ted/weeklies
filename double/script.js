@@ -132,7 +132,7 @@ function init() {
   lampLight = new THREE.PointLight(0xffaa33, 2, 5, 2);
 
   lampLight.position.set(0, 0.3, 0);
-  // lampLight.castShadow = true;
+  lampLight.castShadow = true;
   // lampLight.shadow.camera.top = 200;
   // lampLight.shadow.camera.bottom = -200;
   // lampLight.shadow.camera.right = 200;
@@ -152,7 +152,7 @@ function init() {
   scene.add(candleLight);
   candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
   candleLight2.position.set(0.361, 0.11, -0.281);
-  // candleLight2.castShadow = true;
+  candleLight2.castShadow = true;
   // candleLight2.shadow.camera.top = 200;
   // candleLight2.shadow.camera.bottom = -200;
   // candleLight2.shadow.camera.right = 200;
@@ -240,7 +240,7 @@ function init() {
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
-  controls.minDistance = 1;
+  controls.minDistance = .8;
   controls.maxDistance = 6;
   controls.minPolarAngle = Math.PI / 5;
   controls.maxPolarAngle = Math.PI / 2 - 0.1;
