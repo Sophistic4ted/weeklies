@@ -47,12 +47,12 @@ function main() {
     lampLight = new THREE.PointLight(0xffaa33, 2, 5, 2);
 
     lampLight.position.set(0, 0.3, 0);
-    lampLight.castShadow = true;
-    lampLight.shadow.camera.top = 200;
-    lampLight.shadow.camera.bottom = -200;
-    lampLight.shadow.camera.right = 200;
-    lampLight.shadow.camera.left = -200;
-    lampLight.shadow.mapSize.set(4096, 4096);
+    // lampLight.castShadow = true;
+    // lampLight.shadow.camera.top = 200;
+    // lampLight.shadow.camera.bottom = -200;
+    // lampLight.shadow.camera.right = 200;
+    // lampLight.shadow.camera.left = -200;
+    // lampLight.shadow.mapSize.set(4096, 4096);
     scene.add(lampLight);
   }
 
@@ -60,20 +60,20 @@ function main() {
     candleLight = new THREE.PointLight(0xffaa33, .5, 5, 2);
     candleLight.position.set(0.361, 0.11, -0.281);
     candleLight.castShadow = true;
-    candleLight.shadow.camera.top = 200;
-    candleLight.shadow.camera.bottom = -200;
-    candleLight.shadow.camera.right = 200;
-    candleLight.shadow.camera.left = -200;
-    candleLight.shadow.mapSize.set(4096, 4096);
+    // candleLight.shadow.camera.top = 200;
+    // candleLight.shadow.camera.bottom = -200;
+    // candleLight.shadow.camera.right = 200;
+    // candleLight.shadow.camera.left = -200;
+    // candleLight.shadow.mapSize.set(4096, 4096);
     scene.add(candleLight);
     candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
     candleLight2.position.set(0.361, 0.11, -0.281);
     candleLight2.castShadow = true;
-    candleLight2.shadow.camera.top = 200;
-    candleLight2.shadow.camera.bottom = -200;
-    candleLight2.shadow.camera.right = 200;
-    candleLight2.shadow.camera.left = -200;
-    candleLight2.shadow.mapSize.set(4096, 4096);
+    // candleLight2.shadow.camera.top = 200;
+    // candleLight2.shadow.camera.bottom = -200;
+    // candleLight2.shadow.camera.right = 200;
+    // candleLight2.shadow.camera.left = -200;
+    // candleLight2.shadow.mapSize.set(4096, 4096);
     scene.add(candleLight2);
   }
 
