@@ -255,8 +255,6 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-//
-
 function animate() {
   requestAnimationFrame(animate);
 
@@ -265,16 +263,14 @@ function animate() {
 
 
 function render() {
-  renderer.toneMappingExposure = Math.pow(params.exposure, 5.0); // to allow for very bright scenes.
-  renderer.shadowMap.enabled = params.shadows;
-  bulbLight.castShadow = params.shadows;
+  // renderer.toneMappingExposure = Math.pow(params.exposure, 5.0); // to allow for very bright scenes.
+  // renderer.shadowMap.enabled = params.shadows;
+  // bulbLight.castShadow = params.shadows;
 
-  if (params.shadows !== previousShadowMap) {
-    floorMat.needsUpdate = true;
-    previousShadowMap = params.shadows;
-  }
-
-  bulbLight.power = bulbLuminousPowers[params.bulbPower];
+  // if (params.shadows !== previousShadowMap) {
+  //   floorMat.needsUpdate = true;
+  //   previousShadowMap = params.shadows;
+  // }
 
   //const time = Date.now() * 0.0005;
 
