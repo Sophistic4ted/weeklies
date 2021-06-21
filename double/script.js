@@ -241,7 +241,7 @@ function init() {
     floorMat.needsUpdate = true;
   });
 
-  const floorGeometry = new THREE.PlaneGeometry(40, 40);
+  const floorGeometry = new THREE.PlaneGeometry(20, 20);
   const floorMesh = new THREE.Mesh(floorGeometry, floorMat);
   floorMesh.receiveShadow = true;
   floorMesh.rotation.x = -Math.PI / 2.0;
