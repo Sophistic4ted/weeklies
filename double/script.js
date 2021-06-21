@@ -19,6 +19,12 @@ animate();
 function main() {
   const canvas = document.querySelector('#c');
   renderer = new THREE.WebGLRenderer({canvas});
+  renderer.physicallyCorrectLights = true;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true;
+  renderer.toneMapping = THREE.ReinhardToneMapping;
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
   camera = new THREE.PerspectiveCamera(
     50,
