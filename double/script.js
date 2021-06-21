@@ -12,9 +12,13 @@ var flameMaterials = [];
 var clock = new THREE.Clock();
 var flame_time = 0;
 
+
+main();
+animate();
+
 function main() {
   const canvas = document.querySelector('#c');
-  const renderer = new THREE.WebGLRenderer({canvas});
+  renderer = new THREE.WebGLRenderer({canvas});
 
   camera = new THREE.PerspectiveCamera(
     50,
@@ -30,7 +34,7 @@ function main() {
   controls.target.set(0, 5, 0);
   controls.update();
 
-  const scene = new THREE.Scene();
+  scene = new THREE.Scene();
   scene.background = new THREE.Color('black');
 
   {
@@ -85,30 +89,49 @@ function main() {
     });
   }
 
-  function resizeRendererToDisplaySize(renderer) {
-    const canvas = renderer.domElement;
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    const needResize = canvas.width !== width || canvas.height !== height;
-    if (needResize) {
-      renderer.setSize(width, height, false);
-    }
-    return needResize;
-  }
+  controls.minDistance = 1;
+  controls.maxDistance = 6;
+  controls.minPolarAngle = Math.PI / 5;
+  controls.maxPolarAngle = Math.PI / 2 - 0.1;
 
-  function render() {
-    if (resizeRendererToDisplaySize(renderer)) {
-      const canvas = renderer.domElement;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-    }
-
-    renderer.render(scene, camera);
-
-    requestAnimationFrame(render);
-  }
-
-  requestAnimationFrame(render);
+  window.addEventListener("resize", onWindowResize);
 }
 
-main();
+function animate() {
+  requestAnimationFrame(animate);
+
+  render();
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function render() {
+  // renderer.toneMappingExposure = Math.pow(params.exposure, 5.0); // to allow for very bright scenes.
+  // renderer.shadowMap.enabled = params.shadows;
+  // bulbLight.castShadow = params.shadows;
+
+  // if (params.shadows !== previousShadowMap) {
+  //   floorMat.needsUpdate = true;
+  //   previousShadowMap = params.shadows;
+  // }
+
+  // bulbLight.power = bulbLuminousPowers[params.bulbPower];
+
+  // //const time = Date.now() * 0.0005;
+
+  // // bulbLight.position.x = Math.cos(time) * 0.75 + 1.25;
+  // flame_time += clock.getDelta();
+  // flameMaterials[0].uniforms.time.value = flame_time;
+  // flameMaterials[1].uniforms.time.value = flame_time;
+  // candleLight2.position.x = Math.sin(flame_time * Math.PI) * 0.02 + 0.361;
+  // candleLight2.position.z = Math.cos(flame_time * Math.PI * 0.75) * 0.02 - 0.281;
+  // candleLight2.intensity =
+  //   4 + Math.sin(flame_time * Math.PI * 2) * Math.cos(flame_time * Math.PI * 1.5) * 0.25;
+
+  renderer.render(scene, camera);
+}
