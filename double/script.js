@@ -44,20 +44,37 @@ function main() {
   scene.background = new THREE.Color('black');
 
   {
-    const skyColor = 0xB1E1FF;  // light blue
-    const groundColor = 0xB97A20;  // brownish orange
-    const intensity = 1;
-    const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-    scene.add(light);
+    lampLight = new THREE.PointLight(0xffaa33, 2, 5, 2);
+
+    lampLight.position.set(0, 0.3, 0);
+    lampLight.castShadow = true;
+    lampLight.shadow.camera.top = 200;
+    lampLight.shadow.camera.bottom = -200;
+    lampLight.shadow.camera.right = 200;
+    lampLight.shadow.camera.left = -200;
+    lampLight.shadow.mapSize.set(4096, 4096);
+    scene.add(lampLight);
   }
 
   {
-    const color = 0xFFFFFF;
-    const intensity = 1;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(5, 10, 2);
-    scene.add(light);
-    scene.add(light.target);
+    candleLight = new THREE.PointLight(0xffaa33, .5, 5, 2);
+    candleLight.position.set(0.361, 0.11, -0.281);
+    candleLight.castShadow = true;
+    candleLight.shadow.camera.top = 200;
+    candleLight.shadow.camera.bottom = -200;
+    candleLight.shadow.camera.right = 200;
+    candleLight.shadow.camera.left = -200;
+    candleLight.shadow.mapSize.set(4096, 4096);
+    scene.add(candleLight);
+    candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
+    candleLight2.position.set(0.361, 0.11, -0.281);
+    candleLight2.castShadow = true;
+    candleLight2.shadow.camera.top = 200;
+    candleLight2.shadow.camera.bottom = -200;
+    candleLight2.shadow.camera.right = 200;
+    candleLight2.shadow.camera.left = -200;
+    candleLight2.shadow.mapSize.set(4096, 4096);
+    scene.add(candleLight2);
   }
 
   function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
@@ -131,13 +148,13 @@ function render() {
   // //const time = Date.now() * 0.0005;
 
   // // bulbLight.position.x = Math.cos(time) * 0.75 + 1.25;
-  // flame_time += clock.getDelta();
+  flame_time += clock.getDelta();
   // flameMaterials[0].uniforms.time.value = flame_time;
   // flameMaterials[1].uniforms.time.value = flame_time;
-  // candleLight2.position.x = Math.sin(flame_time * Math.PI) * 0.02 + 0.361;
-  // candleLight2.position.z = Math.cos(flame_time * Math.PI * 0.75) * 0.02 - 0.281;
-  // candleLight2.intensity =
-  //   4 + Math.sin(flame_time * Math.PI * 2) * Math.cos(flame_time * Math.PI * 1.5) * 0.25;
+  candleLight2.position.x = Math.sin(flame_time * Math.PI) * 0.02 + 0.361;
+  candleLight2.position.z = Math.cos(flame_time * Math.PI * 0.75) * 0.02 - 0.281;
+  candleLight2.intensity =
+    4 + Math.sin(flame_time * Math.PI * 2) * Math.cos(flame_time * Math.PI * 1.5) * 0.25;
 
   renderer.render(scene, camera);
 }
