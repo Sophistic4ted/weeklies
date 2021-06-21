@@ -23,16 +23,13 @@ function getFlameMaterial(isFrontSide) {
         varying vec2 vUv;
         varying float hValue;
 
-        //https://thebookofshaders.com/11/
-        // 2D Random
         float random (in vec2 st) {
             return fract(sin(dot(st.xy,
                                  vec2(12.9898,78.233)))
                          * 43758.5453123);
         }
 
-        // 2D Noise based on Morgan McGuire @morgan3d
-        // https://www.shadertoy.com/view/4dS3Wd
+
         float noise (in vec2 st) {
             vec2 i = floor(st);
             vec2 f = fract(st);
@@ -76,7 +73,6 @@ function getFlameMaterial(isFrontSide) {
         varying float hValue;
         varying vec2 vUv;
 
-        // honestly stolen from https://www.shadertoy.com/view/4dsSzr
         vec3 heatmapGradient(float t) {
           return clamp((pow(t, 1.5) * 0.8 + 0.2) * vec3(smoothstep(0.0, 0.35, t) + t * 0.5, smoothstep(0.5, 1.0, t), max(1.0 - t * 1.7, t * 7.0 - 6.0)), 0.0, 1.0);
         }
@@ -184,21 +180,21 @@ function init() {
   scene.add(candleLight2);
   //scene.add(new THREE.PointLightHelper(candleLight2));
 
-  // flame
-  function flame(isFrontSide) {
-    let flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
-    flameGeo.translate(0, 0.5, 0);
-    let flameMat = getFlameMaterial(true);
-    flameMaterials.push(flameMat);
-    let flame = new THREE.Mesh(flameGeo, flameMat);
-    flame.scale.set(.01,.01,.01);
-    flame.position.set(0.361, 0.11, -0.281);
-    flame.rotation.y = THREE.Math.degToRad(-45);
-    scene.add(flame);
-  }
+  // // flame
+  // function flame(isFrontSide) {
+  //   let flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
+  //   flameGeo.translate(0, 0.5, 0);
+  //   let flameMat = getFlameMaterial(true);
+  //   flameMaterials.push(flameMat);
+  //   let flame = new THREE.Mesh(flameGeo, flameMat);
+  //   flame.scale.set(.01,.01,.01);
+  //   flame.position.set(0.361, 0.11, -0.281);
+  //   flame.rotation.y = THREE.Math.degToRad(-45);
+  //   scene.add(flame);
+  // }
 
-  flame(false);
-  flame(true);
+  // flame(false);
+  // flame(true);
 
   floorMat = new THREE.MeshStandardMaterial({
     roughness: 0.8,
@@ -304,8 +300,8 @@ function render() {
 
   // bulbLight.position.x = Math.cos(time) * 0.75 + 1.25;
   flame_time += clock.getDelta();
-  flameMaterials[0].uniforms.time.value = flame_time;
-  flameMaterials[1].uniforms.time.value = flame_time;
+  // flameMaterials[0].uniforms.time.value = flame_time;
+  // flameMaterials[1].uniforms.time.value = flame_time;
   candleLight2.position.x = Math.sin(flame_time * Math.PI) * 0.02 + 0.361;
   candleLight2.position.z = Math.cos(flame_time * Math.PI * 0.75) * 0.02 - 0.281;
   candleLight2.intensity =
