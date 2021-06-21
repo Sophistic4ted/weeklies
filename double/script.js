@@ -122,9 +122,9 @@ function init() {
     0.1,
     100
   );
-  camera.position.x = -4;
-  camera.position.z = 4;
-  camera.position.y = 2;
+  camera.position.x = 2;
+  camera.position.z = 0;
+  camera.position.y = 1;
 
   scene = new THREE.Scene();
 
@@ -140,11 +140,11 @@ function init() {
   candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
   candleLight2.position.set(0.361, 0.11, -0.281);
   candleLight2.castShadow = true;
-  // candleLight2.shadow.camera.top = 200;
-  // candleLight2.shadow.camera.bottom = -200;
-  // candleLight2.shadow.camera.right = 200;
-  // candleLight2.shadow.camera.left = -200;
-  // candleLight2.shadow.mapSize.set(4096, 4096);
+  candleLight2.shadow.camera.top = 200;
+  candleLight2.shadow.camera.bottom = -200;
+  candleLight2.shadow.camera.right = 200;
+  candleLight2.shadow.camera.left = -200;
+  candleLight2.shadow.mapSize.set(4096, 4096);
   scene.add(candleLight2);
   //scene.add(new THREE.PointLightHelper(candleLight2));
 
