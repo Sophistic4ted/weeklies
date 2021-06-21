@@ -148,13 +148,13 @@ function render() {
   // //const time = Date.now() * 0.0005;
 
   // // bulbLight.position.x = Math.cos(time) * 0.75 + 1.25;
-  flame_time += clock.getDelta();
-  // flameMaterials[0].uniforms.time.value = flame_time;
-  // flameMaterials[1].uniforms.time.value = flame_time;
-  candleLight2.position.x = Math.sin(flame_time * Math.PI) * 0.02 + 0.361;
-  candleLight2.position.z = Math.cos(flame_time * Math.PI * 0.75) * 0.02 - 0.281;
-  candleLight2.intensity =
-    4 + Math.sin(flame_time * Math.PI * 2) * Math.cos(flame_time * Math.PI * 1.5) * 0.25;
+  // flame_time += clock.getDelta();
+  // // flameMaterials[0].uniforms.time.value = flame_time;
+  // // flameMaterials[1].uniforms.time.value = flame_time;
+  // candleLight2.position.x = Math.sin(flame_time * Math.PI) * 0.02 + 0.361;
+  // candleLight2.position.z = Math.cos(flame_time * Math.PI * 0.75) * 0.02 - 0.281;
+  // candleLight2.intensity =
+  //   4 + Math.sin(flame_time * Math.PI * 2) * Math.cos(flame_time * Math.PI * 1.5) * 0.25;
 
   renderer.render(scene, camera);
 }
