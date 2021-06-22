@@ -12,6 +12,8 @@ var flameMaterials = [];
 var clock = new THREE.Clock();
 var flame_time = 0;
 
+
+
 function getFlameMaterial(isFrontSide) {
   let side = isFrontSide ? THREE.FrontSide : THREE.BackSide;
   return new THREE.ShaderMaterial({
@@ -140,15 +142,9 @@ function init() {
   candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
   candleLight2.position.set(0.361, 0.11, -0.281);
   candleLight2.castShadow = true;
-  candleLight2.shadow.camera.top = 200;
-  candleLight2.shadow.camera.bottom = -200;
-  candleLight2.shadow.camera.right = 200;
-  candleLight2.shadow.camera.left = -200;
-  candleLight2.shadow.mapSize.set(4096, 4096);
+  candleLight2.shadow.mapSize.set(2048, 2048);
   scene.add(candleLight2);
-  //scene.add(new THREE.PointLightHelper(candleLight2));
 
-  // flame
   function flame(isFrontSide) {
     let flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
     flameGeo.translate(0, 0.5, 0);
@@ -250,14 +246,14 @@ function animate() {
 
 
 function render() {
-  // renderer.toneMappingExposure = Math.pow(params.exposure, 5.0); // to allow for very bright scenes.
-  // renderer.shadowMap.enabled = params.shadows;
-  // bulbLight.castShadow = params.shadows;
+  renderer.toneMappingExposure = Math.pow(params.exposure, 5.0); // to allow for very bright scenes.
+  renderer.shadowMap.enabled = params.shadows;
+  candleLight2.castShadow = params.shadows;
 
-  // if (params.shadows !== previousShadowMap) {
-  //   floorMat.needsUpdate = true;
-  //   previousShadowMap = params.shadows;
-  // }
+  if (params.shadows !== previousShadowMap) {
+    floorMat.needsUpdate = true;
+    previousShadowMap = params.shadows;
+  }
 
   //const time = Date.now() * 0.0005;
 
