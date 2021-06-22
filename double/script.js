@@ -13,6 +13,12 @@ var clock = new THREE.Clock();
 var flame_time = 0;
 
 
+console.error = fallback();
+
+
+function fallback() {
+  window.location = 'fallback.html';
+}
 
 function getFlameMaterial(isFrontSide) {
   let side = isFrontSide ? THREE.FrontSide : THREE.BackSide;
@@ -130,15 +136,15 @@ function init() {
 
   scene = new THREE.Scene();
 
-  // candleLight = new THREE.PointLight(0xffaa33, .5, 5, 2);
-  // candleLight.position.set(0.361, 0.11, -0.281);
-  // candleLight.castShadow = true;
-  // // candleLight.shadow.camera.top = 200;
-  // // candleLight.shadow.camera.bottom = -200;
-  // // candleLight.shadow.camera.right = 200;
-  // // candleLight.shadow.camera.left = -200;
-  // // candleLight.shadow.mapSize.set(4096, 4096);
-  // scene.add(candleLight);
+  candleLight = new THREE.PointLight(0xffaa33, .5, 5, 2);
+  candleLight.position.set(0.361, 0.11, -0.281);
+  candleLight.castShadow = true;
+  candleLight.shadow.camera.top = 200;
+  candleLight.shadow.camera.bottom = -200;
+  candleLight.shadow.camera.right = 200;
+  candleLight.shadow.camera.left = -200;
+  candleLight.shadow.mapSize.set(4096, 4096);
+  scene.add(candleLight);
   candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
   candleLight2.position.set(0.361, 0.11, -0.281);
   candleLight2.castShadow = true;
