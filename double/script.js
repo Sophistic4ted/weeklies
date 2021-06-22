@@ -12,6 +12,17 @@ var flameMaterials = [];
 var clock = new THREE.Clock();
 var flame_time = 0;
 
+
+const loadingManager = new THREE.LoadingManager( () => {
+	
+  const loadingScreen = document.getElementById( 'loading-screen' );
+  loadingScreen.classList.add( 'fade-out' );
+  
+  // optional: remove loader from DOM via event listener
+  loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+  
+} );
+
 function getFlameMaterial(isFrontSide) {
   let side = isFrontSide ? THREE.FrontSide : THREE.BackSide;
   return new THREE.ShaderMaterial({
@@ -156,7 +167,7 @@ function init() {
     bumpScale: 0.0005,
   });
 
-  const gltfLoader = new GLTFLoader();
+  const gltfLoader = new GLTFLoader(loadingManager);
   gltfLoader.load("area.gltf", (gltf) => {
     gltf.scene.traverse(function (node) {
       if (node.isMesh) {
@@ -167,7 +178,7 @@ function init() {
     scene.add(root);
   });
 
-  const textureLoader = new THREE.TextureLoader();
+  const textureLoader = new THREE.TextureLoader(loadingManager);
   textureLoader.load("hardwood2_diffuse.jpg", function (map) {
     map.wrapS = THREE.RepeatWrapping;
     map.wrapT = THREE.RepeatWrapping;
@@ -255,4 +266,11 @@ function render() {
     4 + Math.sin(flame_time * Math.PI * 2) * Math.cos(flame_time * Math.PI * 1.5) * 0.25;
 
   renderer.render(scene, camera);
+}
+
+
+function onTransitionEnd( event ) {
+
+	event.target.remove();
+	
 }
