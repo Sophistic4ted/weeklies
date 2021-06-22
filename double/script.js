@@ -2,7 +2,7 @@ import * as THREE from "https://cdn.skypack.dev/pin/three@v0.129.0-tccbvW7qPaDqc
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
 
-let camera, scene, renderer, bulbLight, candleLight, candleLight2, lampLight;
+let camera, scene, renderer, candleLight2;
 
 let floorMat;
 
@@ -11,14 +11,6 @@ let previousShadowMap = false;
 var flameMaterials = [];
 var clock = new THREE.Clock();
 var flame_time = 0;
-
-
-console.error = fallback();
-
-
-function fallback() {
-  window.location = 'fallback.html';
-}
 
 function getFlameMaterial(isFrontSide) {
   let side = isFrontSide ? THREE.FrontSide : THREE.BackSide;
@@ -136,15 +128,6 @@ function init() {
 
   scene = new THREE.Scene();
 
-  candleLight = new THREE.PointLight(0xffaa33, .5, 5, 2);
-  candleLight.position.set(0.361, 0.11, -0.281);
-  candleLight.castShadow = true;
-  candleLight.shadow.camera.top = 200;
-  candleLight.shadow.camera.bottom = -200;
-  candleLight.shadow.camera.right = 200;
-  candleLight.shadow.camera.left = -200;
-  candleLight.shadow.mapSize.set(4096, 4096);
-  scene.add(candleLight);
   candleLight2 = new THREE.PointLight(0xffaa33, .5, 10, 2);
   candleLight2.position.set(0.361, 0.11, -0.281);
   candleLight2.castShadow = true;
@@ -194,6 +177,7 @@ function init() {
     floorMat.map = map;
     floorMat.needsUpdate = true;
   });
+
   textureLoader.load("hardwood2_bump.jpg", function (map) {
     map.wrapS = THREE.RepeatWrapping;
     map.wrapT = THREE.RepeatWrapping;
@@ -202,6 +186,7 @@ function init() {
     floorMat.bumpMap = map;
     floorMat.needsUpdate = true;
   });
+
   textureLoader.load("hardwood2_roughness.jpg", function (map) {
     map.wrapS = THREE.RepeatWrapping;
     map.wrapT = THREE.RepeatWrapping;
@@ -252,7 +237,7 @@ function animate() {
 
 
 function render() {
-  renderer.toneMappingExposure = Math.pow(params.exposure, 5.0); // to allow for very bright scenes.
+  renderer.toneMappingExposure = Math.pow(params.exposure, 5.0);
   renderer.shadowMap.enabled = params.shadows;
   candleLight2.castShadow = params.shadows;
 
@@ -261,9 +246,6 @@ function render() {
     previousShadowMap = params.shadows;
   }
 
-  //const time = Date.now() * 0.0005;
-
-  // bulbLight.position.x = Math.cos(time) * 0.75 + 1.25;
   flame_time += clock.getDelta();
   flameMaterials[0].uniforms.time.value = flame_time;
   flameMaterials[1].uniforms.time.value = flame_time;
