@@ -26,7 +26,6 @@ h3 {
 }
 
 h3 {
-  margin-top: 128px;
   font-size: 28px;
 }
 
@@ -35,6 +34,7 @@ a {
 }
 
 .hero {
+  margin-top: -25px;
   font-family: "Newsreader", serif;
   font-size: clamp(20px, 5vw, 50px);
   line-height: 1;
@@ -502,6 +502,11 @@ a {
     font 7s step-end infinite, movement 8s step-end infinite;
 }
 
+img {
+  margin: 50px;
+  height: 400px;
+}
+
 .hero-container {
   position: relative;
   display: flex;
@@ -525,7 +530,6 @@ a {
 }
 
 .button {
-  margin-top: 256px;
   text-decoration: none;
   color: #000;
   background: #fff;
@@ -536,7 +540,6 @@ a {
   border-radius: 4px;
   font-size: 20px;
   font-weight: bold;
-  text-transform: uppercase;
   transition: all 0.2s ease-in-out;
 }
 
