@@ -11,6 +11,10 @@ form {
   margin-right: auto;
   margin-bottom: 96px;
 }
+.hint {
+  margin-top: 8px;
+  text-align: center;
+}
 
 input {
   margin-bottom: 8px;
