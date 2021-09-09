@@ -241,28 +241,8 @@ tw-dialog-links tw-link {
   border: none;
 }
 
-#restart {
-  	margin-left: auto;
-  	padding: 0 5vw;
-	margin-top: 16px;
-}
-
-#restart .enchantment-link,
-#restart tw-link {  
-  font-size: 2.5em;
-  font-family: 'VT323', monospace;
-  font-weight: normal;
-  color: white;
-  display: block;
-  position: relative;
-  padding: 0.2em 0;
-  text-decoration: none;
-}
-
 .enchantment-link,
 tw-link {
-  font-size: 1em;
-  font-family: 'VT323', monospace;
   font-weight: normal;
   color: white;
   display: block;
@@ -304,9 +284,7 @@ tw-link:focus::after {
 }
 
 #content{
-    font-size: 1em;
     margin: 0;
-    font-family: 'VT323', monospace;
   	overflow-y: auto;
 }
 #content:after{
@@ -364,7 +342,73 @@ if (typeof window.customScripts == "undefined") {
 };
 
 </script><tw-passagedata pid="1" name="start" tags="" position="25,200" size="100,100">(set: $typewriter to &#39;typewriter-start&#39;)
-(set: $choices to &#39;choices-start&#39;)</tw-passagedata><tw-passagedata pid="2" name="Header" tags="header" position="100,0" size="100,100"></tw-passagedata><tw-passagedata pid="3" name="Startup" tags="startup" position="0,0" size="100,100">&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot;&gt;
+(set: $choices to &#39;choices-start&#39;)</tw-passagedata><tw-passagedata pid="2" name="Header" tags="header" position="100,0" size="100,100">&lt;script&gt;
+	function setupTypewriter(t) {
+    var HTML = t.innerHTML;
+
+	    t.innerHTML = &quot;&quot;;
+
+	    var cursorPosition = 0,
+	        tag = &quot;&quot;,
+	        writingTag = false,
+	        tagOpen = false,
+	        typeSpeed = 30,
+        tempTypeSpeed = 0;
+
+	    var type = function() {
+        
+	        if (writingTag === true) {
+	            tag += HTML[cursorPosition];
+	        }
+
+	        if (HTML[cursorPosition] === &quot;&lt;&quot;) {
+	            tempTypeSpeed = 0;
+	            if (tagOpen) {
+	                tagOpen = false;
+	                writingTag = true;
+	            } else {
+	                tag = &quot;&quot;;
+	                tagOpen = true;
+	                writingTag = true;
+	                tag += HTML[cursorPosition];
+	            }
+	        }
+	        if (!writingTag &amp;&amp; tagOpen) {
+	            tag.innerHTML += HTML[cursorPosition];
+	        }
+	        if (!writingTag &amp;&amp; !tagOpen) {
+	            if (HTML[cursorPosition] === &quot; &quot;) {
+	                tempTypeSpeed = 0;
+	            }
+	            else {
+	                tempTypeSpeed = (Math.random() * typeSpeed ) + typeSpeed;
+	            }
+	            t.innerHTML += HTML[cursorPosition];
+	        }
+	        if (writingTag === true &amp;&amp; HTML[cursorPosition] === &quot;&gt;&quot;) {
+	            tempTypeSpeed = (Math.random() * typeSpeed ) + typeSpeed;
+	            writingTag = false;
+	            if (tagOpen) {
+	                var newSpan = document.createElement(&quot;span&quot;);
+	                t.appendChild(newSpan);
+	                newSpan.innerHTML = tag;
+	                tag = newSpan.firstChild;
+	            }
+	        }
+
+	        cursorPosition += 1;
+	        if (cursorPosition &lt; HTML.length - 1) {
+	            setTimeout(type, tempTypeSpeed);
+	        }
+
+	    };
+
+	    return {
+	        type: type
+	    };	
+
+};
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="3" name="Startup" tags="startup" position="0,0" size="100,100">&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot;&gt;
 &lt;link href=&quot;https://fonts.googleapis.com/css2?family=VT323&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt; 
 
 (set: $choices to &quot;&quot;)
@@ -434,10 +478,12 @@ if (typeof window.customScripts == "undefined") {
 	    };	
 
 };
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Footer" tags="footer" position="225,0" size="100,100">&lt;div id=&#39;typewriter&#39;&gt;
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="4" name="Footer" tags="footer" position="225,0" size="100,100">&lt;div id=&#39;typewriter&#39; style=&#39;font-size: 20px; font-family: &#39;VT323&#39;, monospace;
+&#39;&gt;
   	(display: $typewriter)
 &lt;/div&gt;
-&lt;div id=&#39;choices&#39;&gt;
+&lt;div id=&#39;choices&#39; style=&#39;font-size: 20px; font-family: &#39;VT323&#39;, monospace;
+&#39;&gt;
   	(display: $choices)
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="choices-start" tags="" position="25,400" size="100,100">[[Who are you?]]
 [[Who am I?]]
